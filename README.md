@@ -8,270 +8,357 @@
     /* Base Styling */
     :root {
       --bg-color-light: #f5f5f5;
-      --bg-color-dark: #333;
+      --bg-color-dark: #2c3e50;
+      --bg-color-macos-dark: #1c1c1c;
       --text-color-light: #333;
-      --text-color-dark: #f5f5f5;
-      --link-color: #3498db;
+      --text-color-dark: #ecf0f1;
+      --link-color-light: #3498db;
+      --link-color-dark: #3498db;
       --link-hover-color: #2ecc71;
       --button-bg-light: #3498db;
       --button-bg-dark: #2ecc71;
+      --button-bg-macos-dark: #555;
       --button-text-light: #fff;
-      --button-text-dark: #333;
+      --button-text-dark: #ecf0f1;
+      --nav-bg-light: #ecf0f1;
+      --nav-bg-dark: #34495e;
+      --nav-bg-macos-dark: #2c2c2c;
+      --nav-text-light: #333;
+      --nav-text-dark: #ecf0f1;
     }
 
     body {
-      background-color: var(--bg-color-light);
-      color: var(--text-color-light);
-      transition: background-color 0.3s, color 0.3s;
+      background-color: var(--bg-color-macos-dark);
+      color: var(--text-color-dark);
+      transition: background-color 0.5s, color 0.5s;
       font-family: 'Courier New', Courier, monospace;
       margin: 0;
       padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .navigator {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
-      background-color: var(--bg-color-light);
-      padding: 10px;
+      background-color: var(--nav-bg-macos-dark);
+      padding: 15px;
       position: fixed;
       width: 100%;
       top: 0;
-      transition: top 0.3s;
-      position: relative; /* Make the navigator the positioning context */
+      transition: top 0.3s, background-color 0.5s;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .nav-link {
+    .nav-menu {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-item {
+      color: var(--nav-text-dark);
       text-decoration: none;
-      color: var(--link-color);
-      font-size: 18px;
-      transition: color 0.3s;
-      position: relative; /* Position the buttons relative to the navigator */
-      z-index: 2; /* Make the buttons appear above the search bar */
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
     }
 
-    .nav-link:hover {
-      color: var(--link-hover-color);
+    .nav-item:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     .search-bar {
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 5px;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 15px;
       font-size: 16px;
       width: 200px;
-      transition: border-color 0.3s;
-      z-index: 1; /* Make the search bar appear above other elements */
+      transition: width 0.3s, box-shadow 0.3s;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--text-color-dark);
     }
 
     .search-bar:focus {
-      border-color: var(--link-color);
+      width: 250px;
       outline: none;
+      box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
     }
 
-    .link {
-      text-decoration: none;
-      color: var(--link-color);
-      position: relative;
-      overflow: hidden;
-      display: inline-block;
-      padding: 5px;
-      border-radius: 5px;
-    }
-
-    .link::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 300%;
-      height: 300%;
-      background: rgba(0, 0, 0, 0.1);
-      transition: transform 0.4s ease;
-      transform: translate(-50%, -50%) scale(0);
-      border-radius: 50%;
-      z-index: 0;
-    }
-
-    .link:hover::before {
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    .link:hover {
-      color: var(--link-hover-color);
-      transform: scale(1.1);
-      z-index: 1;
-    }
-
-    .category {
-      margin-bottom: 20px;
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
-
-    /* Theme Toggle Button */
     .theme-toggle {
-      background-color: var(--button-bg-light);
-      color: var(--button-text-light);
+      background-color: var(--button-bg-macos-dark);
+      color: var(--button-text-dark);
       border: none;
-      border-radius: 5px;
+      border-radius: 20px;
       padding: 10px 20px;
       cursor: pointer;
       font-size: 16px;
-      transition: background-color 0.3s, transform 0.3s;
-      position: relative; /* Use relative positioning */
-      margin-right: 10px; /* Add some right margin */
+      transition: background-color 1.0s, transform 0.5s;
     }
 
     .theme-toggle:hover {
       background-color: var(--button-bg-dark);
-      color: var(--button-text-dark);
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
-    /* Dark Mode and Light Mode */
-    .dark-mode {
-      background-color: var(--bg-color-dark);
-      color: var(--text-color-dark);
-    }
-
-    .dark-mode .navigator {
-      background-color: var(--bg-color-dark);
-    }
-
-    .dark-mode .link {
-      color: var(--link-hover-color);
-    }
-
-    .dark-mode .theme-toggle {
-      background-color: var(--button-bg-dark);
-      color: var(--button-text-dark);
-    }
-
-    .about-box {
+    .theme-options {
       display: none;
-      position: fixed;
-      top: 20%;
-      left: 50%;
-      transform: translate(-50%, -20%);
-      background-color: var(--bg-color-light);
-      color: var(--text-color-light);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-    }
-
-    .about-box.show {
-      display: block;
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: var(--link-color);
-      cursor: pointer;
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 100%;
+      right: 0;
+      background-color: var(--nav-bg-macos-dark);
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .close-btn:hover {
+    .theme-option {
+      display: block;
+      padding: 10px 20px;
+      color: var(--nav-text-dark);
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .theme-option:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .content {
+      margin-top: 80px;
+      padding: 20px;
+    }
+
+    .category-button {
+      background-color: var(--button-bg-macos-dark);
+      color: var(--button-text-dark);
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+      width: 100%;
+      text-align: left;
+    }
+
+    .category-button:hover {
+      background-color: var(--button-bg-dark);
+    }
+
+    .category-content {
+      display: none;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .link {
+      text-decoration: none;
+      color: var(--link-color-dark);
+      transition: color 0.3s;
+    }
+
+    .link:hover {
       color: var(--link-hover-color);
     }
 
-    /* Raw Code Section */
-    .raw-code {
-      margin-top: 20px;
-      padding: 10px;
-      border: 1px solid #ccc;
+    .useless-button {
+      background-color: var(--button-bg-macos-dark);
+      color: var(--button-text-dark);
+      border: none;
       border-radius: 5px;
-      background-color: #f0f0f0;
-      font-family: monospace;
+      padding: 10px 20px;
+      margin: 10px 0;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .useless-button:hover {
+      background-color: var(--button-bg-dark);
+      transform: scale(1.05);
+    }
+
+    /* Theme-specific styles */
+    body.light-mode {
+      --bg-color: var(--bg-color-light);
+      --text-color: var(--text-color-light);
+      --nav-bg: var(--nav-bg-light);
+      --nav-text: var(--nav-text-light);
+      --link-color: var(--link-color-light);
+      --button-bg: var(--button-bg-light);
+      --button-text: var(--button-text-light);
+    }
+
+    body.dark-mode {
+      --bg-color: var(--bg-color-dark);
+      --text-color: var(--text-color-dark);
+      --nav-bg: var(--nav-bg-dark);
+      --nav-text: var(--nav-text-dark);
+      --link-color: var(--link-color-dark);
+      --button-bg: var(--button-bg-dark);
+      --button-text: var(--button-text-dark);
+    }
+
+    body.macos-dark-mode {
+      --bg-color: var(--bg-color-macos-dark);
+      --text-color: var(--text-color-dark);
+      --nav-bg: var(--nav-bg-macos-dark);
+      --nav-text: var(--nav-text-dark);
+      --link-color: var(--link-color-dark);
+      --button-bg: var(--button-bg-macos-dark);
+      --button-text: var(--button-text-dark);
+    }
+
+    /* Apply theme */
+    body.light-mode,
+    body.dark-mode,
+    body.macos-dark-mode {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    body.light-mode .navigator,
+    body.dark-mode .navigator,
+    body.macos-dark-mode .navigator {
+      background-color: var(--nav-bg);
+    }
+
+    body.light-mode .nav-item,
+    body.dark-mode .nav-item,
+    body.macos-dark-mode .nav-item {
+      color: var(--nav-text);
+    }
+
+    body.light-mode .theme-toggle,
+    body.dark-mode .theme-toggle,
+    body.macos-dark-mode .theme-toggle,
+    body.light-mode .category-button,
+    body.dark-mode .category-button,
+    body.macos-dark-mode .category-button,
+    body.light-mode .useless-button,
+    body.dark-mode .useless-button,
+    body.macos-dark-mode .useless-button {
+      background-color: var(--button-bg);
+      color: var(--button-text);
+    }
+
+    body.light-mode .link,
+    body.dark-mode .link,
+    body.macos-dark-mode .link {
+      color: var(--link-color);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .navigator {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-menu {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .search-bar {
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .theme-toggle {
+        width: 100%;
+      }
+
+      .theme-options {
+        width: 100%;
+        position: static;
+        display: none;
+      }
     }
   </style>
 </head>
-<body>
-  <div class="navigator" id="navigator">
-    <a href="#" class="nav-link" id="about-link">[!] About</a>
-    <input type="text" id="search-bar" placeholder="Search commands..." class="search-bar" />
-    <button class="theme-toggle">Toggle Theme</button>
-  </div>
+<body class="macos-dark-mode">
+  <nav class="navigator">
+    <div class="nav-menu">
+      <a href="#" class="nav-item">Home</a>
+      <a href="#" class="nav-item">Commands</a>
+      <a href="#" class="nav-item">About</a>
+    </div>
+    <input type="text" class="search-bar" placeholder="Search commands...">
+    <div class="theme-container">
+      <button class="theme-toggle">Choose Theme</button>
+      <div class="theme-options">
+        <a href="#" class="theme-option" data-theme="light-mode">Light</a>
+        <a href="#" class="theme-option" data-theme="dark-mode">Sky Blue</a>
+        <a href="#" class="theme-option" data-theme="macos-dark-mode">MacOS Dark</a>
+      </div>
+    </div>
+  </nav>
 
-  <div class="about-box" id="about-box">
-    <button class="close-btn" id="close-about">&times;</button>
-    <h2>About</h2>
-    <p>This guide was created by **VM/AM**. It is designed to help you navigate various commands in a stylish and interactive manner. Enjoy exploring!</p>
-    <ul>
-      <li><strong>Discord:</strong> <a href="https://discord.com/invite/NTTXKCuv" target="_blank">cherry_yuki0</a></li>
-      <li><strong>Facebook:</strong> <a href="https://facebook.com/vmam69" target="_blank">VM/AM</a></li>
-      <li><strong>YouTube:</strong> <a href="https://youtube.com/@theanonlyricist" target="_blank">The Anon Lyricist</a></li>
-    </ul>
-  </div>
+  <div class="content">
+    <button class="category-button">Gemini Commands</button>
+    <div class="category-content">
+      <p><strong><a href="#" class="link">Link1</a></strong>: Description of Gemini Link1</p>
+      <p><strong><a href="#" class="link">Link2</a></strong>: Description of Gemini Link2</p>
+      <p><strong><a href="#" class="link">Link3</a></strong>: Description of Gemini Link3</p>
+      <p><strong>API Key Link</strong>: <a href="#" class="link">Get API Key</a></p>
+    </div>
 
-  ## 1. **Gemini**
-  <div class="category" data-description="Gemini related commands">
-    - **<a href="#" class="link">Link1</a>**: Description of Gemini Link1
-    - **<a href="#" class="link">Link2</a>**: Description of Gemini Link2
-    - **<a href="#" class="link">Link3</a>**: Description of Gemini Link3
-    - **API Key Link**: <a href="#" class="link">Get API Key</a> <!-- Replace # with the actual link -->
-  </div>
+    <button class="category-button">Other Commands</button>
+    <div class="category-content">
+      <p><strong><a href="#" class="link">Other Link1</a></strong>: Description of Other Link1</p>
+      <p><strong><a href="#" class="link">Other Link2</a></strong>: Description of Other Link2</p>
+    </div>
 
-  <!-- Add other categories here -->
-
-  <div class="raw-code">
-    <h2>Raw Code</h2>
-    <p>Paste your raw code here:</p>
-    <pre><code>
-      // Your raw code goes here
-    </code></pre>
+    <button class="useless-button">Test Tutton 1</button>
+    <button class="useless-button">Test Button 2</button>
+    <button class="useless-button">Test Button 3</button>
   </div>
 
   <script>
     // Theme Toggle Functionality
-    document.querySelector('.theme-toggle').addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeOptions = document.querySelector('.theme-options');
+    const body = document.body;
+
+    themeToggle.addEventListener('click', () => {
+      themeOptions.style.display = themeOptions.style.display === 'block' ? 'none' : 'block';
     });
 
-    // Show About Box
-    document.getElementById('about-link').addEventListener('click', (event) => {
-      event.preventDefault();
-      document.getElementById('about-box').classList.add('show');
+    document.querySelectorAll('.theme-option').forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.preventDefault();
+        body.className = option.dataset.theme;
+        themeOptions.style.display = 'none';
+      });
     });
 
-    // Close About Box
-    document.getElementById('close-about').addEventListener('click', () => {
-      document.getElementById('about-box').classList.remove('show');
+    // Category Toggle Functionality
+    document.querySelectorAll('.category-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      });
     });
 
-    // Hide/Show Navigator on Scroll
-    let lastScrollTop = 0;
-    const navbar = document.getElementById('navigator');
-
-    window.addEventListener('scroll', () => {
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      if (scrollTop > lastScrollTop) {
-        navbar.style.top = "-60px"; // Adjust according to navbar height
-      } else {
-        navbar.style.top = "0";
+    // Close theme options when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.matches('.theme-toggle') && !e.target.matches('.theme-option')) {
+        themeOptions.style.display = 'none';
       }
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
 
-    // Auto Music Playing (Optional)
-    // window.addEventListener('load', () => {
-    //   const audio = new Audio('tired.mp3'); // Replace with your music file path
-    //   audio.loop = true;
-    //   audio.volume = 0.2; // Adjust volume as needed
-    //   audio.play();
-    // });
+    // Useless Button Functionality
+    document.querySelectorAll('.useless-button').forEach(button => {
+      button.addEventListener('click', () => {
+        alert('This button Is Only For Test!');
+      });
+    });
   </script>
 </body>
 </html>
