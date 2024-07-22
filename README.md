@@ -39,6 +39,7 @@
       width: 100%;
       top: 0;
       transition: top 0.3s;
+      position: relative; /* Make the navigator the positioning context */
     }
 
     .nav-link {
@@ -46,6 +47,8 @@
       color: var(--link-color);
       font-size: 18px;
       transition: color 0.3s;
+      position: relative; /* Position the buttons relative to the navigator */
+      z-index: 2; /* Make the buttons appear above the search bar */
     }
 
     .nav-link:hover {
@@ -59,6 +62,7 @@
       font-size: 16px;
       width: 200px;
       transition: border-color 0.3s;
+      z-index: 1; /* Make the search bar appear above other elements */
     }
 
     .search-bar:focus {
@@ -121,6 +125,8 @@
       cursor: pointer;
       font-size: 16px;
       transition: background-color 0.3s, transform 0.3s;
+      position: relative; /* Use relative positioning */
+      margin-right: 10px; /* Add some right margin */
     }
 
     .theme-toggle:hover {
