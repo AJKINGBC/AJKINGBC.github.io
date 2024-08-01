@@ -96,7 +96,3 @@
     </script>
 </body>
 </html>
-
-
-Completion time: 12.45 seconds
-Total words: 470
