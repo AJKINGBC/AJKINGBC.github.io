@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,10 +13,17 @@
             text-align: center;
             padding: 0;
             margin: 0;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
         h1 {
-            margin-top: 100px;
+            margin-top: 0;
             font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         input[type="text"] {
             width: 80%;
@@ -27,6 +33,7 @@
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.2);
             color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         button {
             padding: 10px 20px;
@@ -36,18 +43,28 @@
             color: white;
             font-size: 1em;
             cursor: pointer;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         p {
             margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
         }
     </style>
 </head>
 <body>
-    <h1>PRIYANSHI KAUR'S SPACE 🚀</h1>
-    <input type="text" id="videoLink" placeholder="Enter YouTube video link">
-    <button onclick="downloadAudio()">Download</button>
-    <p>Download Audio with ease!</p>
-    <p>Remember to refresh the browser if you want to download again.</p>
+    <div class="container">
+        <h1>PRIYANSHI KAUR'S SPACE 🚀</h1>
+        <input type="text" id="videoLink" placeholder="Enter YouTube video link">
+        <button onclick="downloadAudio()">Download</button>
+        <p>Download Audio with ease!</p>
+        <p>Remember to refresh the browser if you want to download again.</p>
+    </div>
 
     <script>
         function downloadAudio() {
@@ -79,3 +96,7 @@
     </script>
 </body>
 </html>
+
+
+Completion time: 12.45 seconds
+Total words: 470
