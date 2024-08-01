@@ -1,98 +1,107 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRIYANSHI KAUR'S SPACE 🚀</title>
+    <title>Dires Login</title>
     <style>
         body {
-            background-image: url("https://i.imgur.com/PeB3ZTU.jpeg");
-            background-size: cover;
-            background-repeat: no-repeat;
+            background-color: #333;
+            color: #fff;
             font-family: sans-serif;
-            color: white;
-            text-align: center;
-            padding: 0;
-            margin: 0;
-            background-attachment: fixed;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
+            margin: 0;
         }
-        h1 {
-            margin-top: 0;
-            font-size: 3em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            margin: 20px auto;
-            border: none;
+
+        .container {
+            background-color: #222;
+            padding: 30px;
             border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-align: center;
         }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #555;
+            border-radius: 3px;
+            background-color: #444;
+            color: #fff;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #888;
+        }
+
+        .checkbox {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .checkbox input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
         button {
+            background-color: #007bff;
+            color: #fff;
             padding: 10px 20px;
             border: none;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            color: white;
-            font-size: 1em;
+            border-radius: 3px;
             cursor: pointer;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
-        p {
+
+        button:hover {
+            background-color: #0069d9;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
             margin-top: 20px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-        .container {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
+            font-size: 12px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>PRIYANSHI KAUR'S SPACE 🚀</h1>
-        <input type="text" id="videoLink" placeholder="Enter YouTube video link">
-        <button onclick="downloadAudio()">Download</button>
-        <p>Download Audio with ease!</p>
-        <p>Remember to refresh the browser if you want to download again.</p>
+        <h1>Dires</h1>
+        <img src="logo.svg" alt="Dires Logo">
+        <p>Sign in to start your session</p>
+        <form>
+            <input type="text" placeholder="Email or Username" required>
+            <input type="password" placeholder="Password" required>
+            <div class="checkbox">
+                <input type="checkbox" id="rememberMe">
+                <label for="rememberMe">Remember Me</label>
+            </div>
+            <button type="submit">Sign In</button>
+            <a href="#">Forgot Your Password?</a>
+            <a href="#">Register a new membership</a>
+        </form>
+        <div class="footer">
+            <a href="#">Imprint</a> | <a href="#">Terms of Service</a>
+        </div>
     </div>
-
-    <script>
-        function downloadAudio() {
-            const videoLink = document.getElementById("videoLink").value;
-            // Your API key
-            const apiKey = "AIzaSyB3BpB0pcTyvp27K2lLWVdd4aCOKID6gRU";
-
-            // Use the YouTube Data API v3 to get video information
-            fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet%2Csnippet%2CcontentDetails&id=${videoLink}&key=${apiKey}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Extract the audio stream URL (you'll need to figure out the correct format for this)
-                    const audioUrl = data.items[0].contentDetails.audioUrl; // Placeholder - you'll need to find the actual audio URL
-
-                    // Create a download link
-                    const downloadLink = document.createElement("a");
-                    downloadLink.href = audioUrl;
-                    downloadLink.download = "audio.mp3"; // Set the file name
-                    downloadLink.textContent = "Download Audio";
-
-                    // Append the download link to the page
-                    document.body.appendChild(downloadLink);
-                })
-                .catch(error => {
-                    console.error("Error fetching video data:", error);
-                    // Handle the error appropriately (e.g., display an error message)
-                });
-        }
-    </script>
 </body>
 </html>
